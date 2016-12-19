@@ -65,10 +65,29 @@ def getRandomIdNumber(sex = 1):
     idNumber = idNumber + str(checkOut)
     return idNumber,addrName,addrId,birthDays,sex,checkOut
 
+def getInfoFromId(id18):
+    '''从身份证号码中得出个人信息：地址、生日、性别'''
+    addrId = id18[0:6]
+    from addr import addr #地址码
+    for it in addr:
+        if addrId == str(it[0]):#校验码
+            addrName = it[1]
+            break
+    else:#未被break终止
+        addrName = 'unknown'
+    
+    birthDays = datetime.datetime.strftime(datetime.datetime.strptime(id18[6:14], "%Y%m%d"), "%Y-%m-%d")
+    sex = 'man' if int(id18[-2])%2 else 'woman' #0为女性，1为男性
+
+    return addrName,birthDays,sex
+
+
+
 
 if __name__=='__main__':
     # print getValidateCheckout("11111111111111111")#该身份证校验码：0  
-    print getRandomIdNumber(0)
+    # print getRandomIdNumber(0)
+    print getInfoFromId('522424199512121010')
 
 
 
