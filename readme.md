@@ -69,7 +69,3 @@ def getRandomIdNumber(sex = 1):
 ```
 
 本文地址：https://github.com/HeLiangHIT/idCardNumber
-
-打赏：
-![](ds.png)
-
